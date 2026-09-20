@@ -1,0 +1,44 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: v.$space-5;
+  margin-bottom: v.$space-6;
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-2;
+    max-width: 62rem;
+  }
+
+  &__title {
+    margin-top: v.$space-1;
+  }
+
+  &__description {
+    color: v.$color-text-secondary;
+    font-size: 1.6rem;
+    max-width: 56rem;
+  }
+
+  &--center {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    .section-heading__text {
+      align-items: center;
+      max-width: 68rem;
+    }
+  }
+
+  @include m.respond-down(v.$bp-sm) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: v.$space-3;
+  }
+}

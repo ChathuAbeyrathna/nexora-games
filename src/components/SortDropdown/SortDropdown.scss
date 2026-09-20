@@ -1,0 +1,38 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.sort-dropdown {
+  display: flex;
+  align-items: center;
+  gap: v.$space-2;
+  height: 5.2rem;
+  padding-inline: v.$space-3;
+  border: 1px solid v.$color-border-strong;
+  background: v.$color-bg-surface;
+
+  &__label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: v.$color-text-secondary;
+    white-space: nowrap;
+  }
+
+  &__select {
+    @include m.button-reset;
+    @include m.focus-ring;
+    background: none;
+    border: none;
+    color: v.$color-text-primary;
+    font-size: 1.4rem;
+    font-weight: 600;
+    cursor: pointer;
+    height: 100%;
+
+    option {
+      background: v.$color-bg-surface;
+      color: v.$color-text-primary;
+    }
+  }
+}

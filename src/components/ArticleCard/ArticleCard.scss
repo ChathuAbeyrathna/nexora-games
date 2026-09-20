@@ -1,0 +1,70 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.article-card {
+  border: 1px solid v.$color-border;
+  background: v.$color-bg-surface;
+  transition: border-color v.$dur-base v.$ease-standard;
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: v.$color-border-strong;
+
+      .article-card__art svg {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__art {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+
+    svg {
+      transition: transform v.$dur-slow v.$ease-standard;
+    }
+  }
+
+  &__body {
+    padding: v.$space-4;
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-2;
+  }
+
+  &__title {
+    font-family: v.$font-display;
+    font-size: 2.1rem;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    line-height: 1.15;
+    margin-top: v.$space-1;
+  }
+
+  &__excerpt {
+    font-size: 1.4rem;
+    color: v.$color-text-secondary;
+    @include m.line-clamp(3);
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: v.$space-1;
+    font-size: 1.2rem;
+    color: v.$color-text-tertiary;
+    margin-top: v.$space-1;
+  }
+
+  &--lg {
+    .article-card__title {
+      font-size: 2.8rem;
+    }
+  }
+}

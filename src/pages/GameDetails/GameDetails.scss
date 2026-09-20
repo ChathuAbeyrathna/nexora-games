@@ -1,0 +1,363 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.gd-hero {
+  position: relative;
+  min-height: 78vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+
+  &__art {
+    position: absolute;
+    inset: 0;
+  }
+
+  &__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(8, 8, 10, 0.2) 0%, rgba(8, 8, 10, 0.55) 55%, rgba(8, 8, 10, 0.98) 100%);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    padding-bottom: v.$space-7;
+    padding-top: 14rem;
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-2;
+    align-items: flex-start;
+  }
+
+  &__title {
+    color: v.$color-text-primary;
+    text-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  &__tagline {
+    font-size: 1.8rem;
+    color: v.$color-text-secondary;
+    max-width: 56rem;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: v.$space-2;
+    font-size: 1.3rem;
+    color: v.$color-text-secondary;
+    flex-wrap: wrap;
+    margin-top: v.$space-2;
+  }
+
+  &__meta-dot {
+    opacity: 0.5;
+  }
+
+  &__rating {
+    margin-top: v.$space-1;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: v.$space-3;
+    margin-top: v.$space-4;
+    flex-wrap: wrap;
+  }
+
+  &__price {
+    font-size: 2rem;
+    font-weight: 800;
+  }
+
+  @include m.respond-down(v.$bp-sm) {
+    &__content {
+      padding-top: 11rem;
+    }
+
+    &__actions {
+      width: 100%;
+
+      .btn,
+      .wishlist-btn {
+        flex: 1;
+      }
+
+      .gd-hero__price {
+        width: 100%;
+        order: -1;
+        margin-bottom: v.$space-1;
+      }
+    }
+  }
+}
+
+.purchase-modal {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-3;
+  font-size: 1.5rem;
+
+  &__note {
+    font-size: 1.3rem;
+  }
+
+  &__actions {
+    display: flex;
+    gap: v.$space-2;
+    margin-top: v.$space-2;
+
+    .btn {
+      flex: 1;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Overview tab
+// ---------------------------------------------------------------------------
+.gd-overview {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: v.$space-7;
+
+  @include m.respond-down(v.$bp-lg) {
+    grid-template-columns: 1fr;
+    gap: v.$space-5;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-3;
+
+    p {
+      color: v.$color-text-secondary;
+      font-size: 1.6rem;
+      line-height: 1.7;
+    }
+  }
+
+  &__subhead {
+    font-family: v.$font-display;
+    font-size: 2rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-top: v.$space-3;
+  }
+
+  &__features {
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-2;
+
+    li {
+      position: relative;
+      padding-left: v.$space-4;
+      color: v.$color-text-secondary;
+      font-size: 1.5rem;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.9rem;
+        width: 8px;
+        height: 1px;
+        background: v.$color-accent;
+      }
+    }
+  }
+
+  &__aside {
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-4;
+    padding: v.$space-4;
+    background: v.$color-bg-surface;
+    border: 1px solid v.$color-border;
+    align-self: start;
+  }
+}
+
+.gd-info-block {
+  h4 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: v.$color-accent;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1.4rem;
+    color: v.$color-text-primary;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Requirements tab
+// ---------------------------------------------------------------------------
+.gd-requirements {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: v.$space-6;
+
+  @include m.respond-down(v.$bp-md) {
+    grid-template-columns: 1fr;
+  }
+
+  &__block {
+    h4 {
+      font-family: v.$font-display;
+      font-size: 2rem;
+      text-transform: uppercase;
+      margin-bottom: v.$space-3;
+      color: v.$color-text-primary;
+    }
+
+    dl {
+      margin: 0;
+    }
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    gap: v.$space-3;
+    padding-block: v.$space-2;
+    border-bottom: 1px solid v.$color-border;
+    font-size: 1.4rem;
+
+    dt {
+      color: v.$color-text-tertiary;
+      font-weight: 700;
+    }
+
+    dd {
+      margin: 0;
+      color: v.$color-text-secondary;
+      text-align: right;
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Reviews tab
+// ---------------------------------------------------------------------------
+.gd-reviews {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-6;
+
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: v.$space-4;
+
+    @include m.respond-down(v.$bp-md) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.rating-breakdown {
+  display: flex;
+  gap: v.$space-6;
+  align-items: center;
+  padding: v.$space-4;
+  background: v.$color-bg-surface;
+  border: 1px solid v.$color-border;
+
+  @include m.respond-down(v.$bp-sm) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: v.$space-3;
+  }
+
+  &__summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: v.$space-1;
+    flex-shrink: 0;
+  }
+
+  &__score {
+    font-size: 5rem;
+  }
+
+  &__bars {
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-1;
+    flex: 1;
+    width: 100%;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr 2rem;
+    align-items: center;
+    gap: v.$space-2;
+    font-size: 1.2rem;
+  }
+
+  &__track {
+    height: 5px;
+    background: v.$color-border;
+  }
+
+  &__fill {
+    height: 100%;
+    background: v.$color-star;
+  }
+}
+
+.review-card {
+  padding: v.$space-4;
+  background: v.$color-bg-surface;
+  border: 1px solid v.$color-border;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-2;
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2rem;
+  }
+
+  &__title {
+    font-size: 1.6rem;
+    font-weight: 800;
+  }
+
+  &__body {
+    font-size: 1.4rem;
+    color: v.$color-text-secondary;
+    line-height: 1.6;
+  }
+
+  &__author {
+    font-size: 1.2rem;
+  }
+}
+
+.gd-related {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: v.$space-4;
+
+  @include m.respond-down(v.$bp-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include m.respond-down(v.$bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}

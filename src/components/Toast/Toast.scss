@@ -1,0 +1,28 @@
+@use '../../styles/variables' as v;
+
+.toast-stack {
+  position: fixed;
+  bottom: v.$space-4;
+  right: v.$space-4;
+  z-index: v.$z-toast;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-2;
+
+  @media (max-width: v.$bp-sm) {
+    left: v.$space-3;
+    right: v.$space-3;
+    bottom: v.$space-3;
+  }
+}
+
+.toast {
+  background: v.$color-bg-surface-2;
+  border: 1px solid v.$color-border-strong;
+  border-left: 3px solid v.$color-accent;
+  color: v.$color-text-primary;
+  padding: 1.4rem 1.8rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}

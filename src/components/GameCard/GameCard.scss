@@ -1,0 +1,147 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.game-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: v.$color-bg-surface;
+  border: 1px solid v.$color-border;
+  transition: border-color v.$dur-base v.$ease-standard;
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: v.$color-border-strong;
+
+      .game-card__art img,
+      .game-card__art svg {
+        transform: scale(1.06);
+      }
+
+      .game-card__overlay {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  &__art {
+    position: relative;
+    aspect-ratio: 7 / 4;
+    overflow: hidden;
+
+    svg {
+      transition: transform v.$dur-slow v.$ease-standard;
+    }
+  }
+
+  &__status {
+    position: absolute;
+    top: v.$space-2;
+    left: v.$space-2;
+    background: rgba(10, 10, 11, 0.7);
+    backdrop-filter: blur(3px);
+    padding: 0.5rem 0.9rem;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: v.$space-3;
+    background: linear-gradient(180deg, rgba(10, 10, 11, 0) 30%, rgba(10, 10, 11, 0.92) 100%);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity v.$dur-base v.$ease-standard, transform v.$dur-base v.$ease-standard;
+  }
+
+  &__overlay-text {
+    color: v.$color-text-primary;
+    font-size: 1.3rem;
+    margin-bottom: v.$space-2;
+    @include m.line-clamp(2);
+  }
+
+  &__cta {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: v.$color-accent;
+  }
+
+  &__body {
+    padding: v.$space-3 v.$space-3 v.$space-4;
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-2;
+  }
+
+  &__heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: v.$space-2;
+  }
+
+  &__title {
+    font-family: v.$font-display;
+    font-size: 2rem;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    line-height: 1.05;
+  }
+
+  &__price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: v.$color-text-primary;
+    flex-shrink: 0;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: v.$space-1;
+    font-size: 1.2rem;
+    color: v.$color-text-secondary;
+    flex-wrap: wrap;
+  }
+
+  &__dot {
+    opacity: 0.5;
+  }
+
+  &__wishlist {
+    position: absolute;
+    top: v.$space-2;
+    right: v.$space-2;
+    z-index: 2;
+
+    .wishlist-btn {
+      padding: 0.9rem;
+      background: rgba(10, 10, 11, 0.7);
+      backdrop-filter: blur(3px);
+    }
+  }
+
+  &--sm {
+    .game-card__title {
+      font-size: 1.7rem;
+    }
+  }
+
+  &--lg {
+    .game-card__title {
+      font-size: 2.4rem;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid v.$color-border-strong;
+  background: v.$color-bg-surface;
+  padding-inline: v.$space-3;
+  height: 5.2rem;
+  transition: border-color v.$dur-fast v.$ease-standard;
+
+  &:focus-within {
+    border-color: v.$color-accent;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    color: v.$color-text-secondary;
+  }
+
+  &__input {
+    @include m.button-reset;
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: v.$color-text-primary;
+    padding-inline: v.$space-2;
+    height: 100%;
+    font-size: 1.5rem;
+    cursor: text;
+
+    &::placeholder {
+      color: v.$color-text-tertiary;
+    }
+
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
+  }
+
+  &__clear {
+    @include m.button-reset;
+    @include m.focus-ring;
+    display: grid;
+    place-items: center;
+    color: v.$color-text-secondary;
+    padding: v.$space-1;
+
+    @media (hover: hover) {
+      &:hover {
+        color: v.$color-accent;
+      }
+    }
+  }
+}

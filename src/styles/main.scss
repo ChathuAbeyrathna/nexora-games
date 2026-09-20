@@ -1,0 +1,292 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+// ---------------------------------------------------------------------------
+// Reset
+// ---------------------------------------------------------------------------
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; // 1rem = 10px
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: v.$color-bg;
+  color: v.$color-text-primary;
+  font-family: v.$font-body;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+#root {
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: v.$color-accent;
+  color: v.$color-accent-contrast;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: v.$color-bg;
+}
+
+::-webkit-scrollbar-thumb {
+  background: v.$color-bg-surface-2;
+  border-radius: 6px;
+
+  &:hover {
+    background: v.$color-border-strong;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Typography helpers
+// ---------------------------------------------------------------------------
+.eyebrow {
+  @include m.eyebrow;
+}
+
+.display-xl {
+  @include m.display-heading;
+  font-size: clamp(4.8rem, 8vw, 10rem);
+}
+
+.display-lg {
+  @include m.display-heading;
+  font-size: clamp(3.6rem, 5.5vw, 6.4rem);
+}
+
+.display-md {
+  @include m.display-heading;
+  font-size: clamp(2.8rem, 3.4vw, 4rem);
+}
+
+.text-secondary {
+  color: v.$color-text-secondary;
+}
+
+// ---------------------------------------------------------------------------
+// Layout utilities
+// ---------------------------------------------------------------------------
+.container {
+  @include m.container;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.section {
+  padding-block: v.$space-8;
+
+  @include m.respond-down(v.$bp-md) {
+    padding-block: v.$space-6;
+  }
+}
+
+.section--tight {
+  padding-block: v.$space-6;
+}
+
+// ---------------------------------------------------------------------------
+// Buttons
+// ---------------------------------------------------------------------------
+.btn {
+  @include m.button-reset;
+  @include m.focus-ring;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: v.$space-2;
+  padding: 1.4rem 2.8rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  border-radius: v.$radius-sm;
+  transition: background v.$dur-fast v.$ease-standard, color v.$dur-fast v.$ease-standard,
+    border-color v.$dur-fast v.$ease-standard, transform v.$dur-fast v.$ease-standard;
+  white-space: nowrap;
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.btn--primary {
+  background: v.$color-accent;
+  color: #fff;
+
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      background: color-mix(in srgb, #{v.$color-accent} 88%, white 12%);
+    }
+  }
+}
+
+.btn--outline {
+  background: transparent;
+  color: v.$color-text-primary;
+  border-color: v.$color-border-strong;
+
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      border-color: v.$color-accent;
+      color: v.$color-accent;
+    }
+  }
+}
+
+.btn--ghost {
+  background: transparent;
+  color: v.$color-text-primary;
+
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      color: v.$color-accent;
+    }
+  }
+}
+
+.btn--sm {
+  padding: 1rem 1.8rem;
+  font-size: 1.2rem;
+}
+
+.btn--full {
+  width: 100%;
+}
+
+// ---------------------------------------------------------------------------
+// Tags / badges
+// ---------------------------------------------------------------------------
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: v.$color-text-secondary;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-sm;
+}
+
+.tag--accent {
+  color: v.$color-accent;
+  border-color: rgba(226, 87, 44, 0.4);
+  background: v.$color-accent-soft;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: v.$color-text-secondary;
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+}
+
+.status-pill--available {
+  color: v.$color-success;
+}
+
+.status-pill--upcoming {
+  color: v.$color-accent;
+}
+
+// ---------------------------------------------------------------------------
+// Global page transition wrapper
+// ---------------------------------------------------------------------------
+.page {
+  min-height: 100vh;
+}
+
+.gsap-reveal {
+  opacity: 0;
+}
+
+.not-found {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: v.$space-2;
+}

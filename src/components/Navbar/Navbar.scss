@@ -1,0 +1,190 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: v.$z-nav;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background v.$dur-base v.$ease-standard, border-color v.$dur-base v.$ease-standard;
+
+  &.is-scrolled {
+    background: rgba(10, 10, 11, 0.86);
+    backdrop-filter: blur(10px);
+    border-bottom-color: v.$color-border;
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 8rem;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: v.$space-2;
+    flex-shrink: 0;
+  }
+
+  &__logo-mark {
+    display: grid;
+    place-items: center;
+    width: 3.2rem;
+    height: 3.2rem;
+    background: v.$color-accent;
+    color: #fff;
+    font-family: v.$font-display;
+    font-size: 1.8rem;
+  }
+
+  &__logo-text {
+    font-family: v.$font-display;
+    font-size: 2rem;
+    letter-spacing: 0.14em;
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: v.$space-6;
+
+    @include m.respond-down(v.$bp-lg) {
+      display: none;
+    }
+  }
+
+  &__link {
+    position: relative;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: v.$color-text-secondary;
+    padding-block: v.$space-2;
+    transition: color v.$dur-fast v.$ease-standard;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: 0;
+      height: 2px;
+      background: v.$color-accent;
+      transition: right v.$dur-base v.$ease-standard;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        color: v.$color-text-primary;
+      }
+    }
+
+    &.is-active {
+      color: v.$color-text-primary;
+
+      &::after {
+        right: 0;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: v.$space-3;
+  }
+
+  &__icon-btn {
+    @include m.focus-ring;
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 4rem;
+    height: 4rem;
+    color: v.$color-text-primary;
+    transition: color v.$dur-fast v.$ease-standard;
+
+    @media (hover: hover) {
+      &:hover {
+        color: v.$color-accent;
+      }
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.4rem;
+    display: grid;
+    place-items: center;
+    min-width: 1.6rem;
+    height: 1.6rem;
+    padding-inline: 0.3rem;
+    background: v.$color-accent;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 800;
+    border-radius: 50%;
+  }
+
+  &__burger {
+    @include m.button-reset;
+    @include m.focus-ring;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 4rem;
+    height: 4rem;
+
+    span {
+      display: block;
+      width: 2.2rem;
+      height: 2px;
+      background: v.$color-text-primary;
+      transition: transform v.$dur-fast v.$ease-standard, opacity v.$dur-fast v.$ease-standard;
+    }
+
+    &.is-open {
+      span:first-child {
+        transform: translateY(3.5px) rotate(45deg);
+      }
+      span:last-child {
+        transform: translateY(-3.5px) rotate(-45deg);
+      }
+    }
+
+    @include m.respond-down(v.$bp-lg) {
+      display: flex;
+    }
+  }
+
+  &__mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 8rem 0 0 0;
+    background: v.$color-bg;
+    padding: v.$space-6 v.$space-4;
+    overflow-y: auto;
+  }
+
+  &__mobile-link {
+    display: block;
+    padding-block: v.$space-3;
+    border-bottom: 1px solid v.$color-border;
+    font-family: v.$font-display;
+    font-size: 3.6rem;
+    text-transform: uppercase;
+    color: v.$color-text-secondary;
+
+    &.is-active {
+      color: v.$color-accent;
+    }
+  }
+}

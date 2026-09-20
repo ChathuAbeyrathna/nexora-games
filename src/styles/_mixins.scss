@@ -1,0 +1,84 @@
+@use 'sass:color';
+@use 'variables' as v;
+
+@mixin respond-down($bp) {
+  @media (max-width: $bp) {
+    @content;
+  }
+}
+
+@mixin respond-up($bp) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: v.$container-max;
+  margin-inline: auto;
+  padding-inline: v.$space-6;
+
+  @include respond-down(v.$bp-lg) {
+    padding-inline: v.$space-5;
+  }
+
+  @include respond-down(v.$bp-md) {
+    padding-inline: v.$space-4;
+  }
+
+  @include respond-down(v.$bp-sm) {
+    padding-inline: v.$space-3;
+  }
+}
+
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid v.$color-accent;
+    outline-offset: 3px;
+  }
+}
+
+@mixin button-reset {
+  appearance: none;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin eyebrow {
+  font-family: v.$font-body;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: v.$color-accent;
+}
+
+@mixin display-heading {
+  font-family: v.$font-display;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  line-height: 0.98;
+}
+
+@mixin hover-lift {
+  transition: transform v.$dur-base v.$ease-standard, box-shadow v.$dur-base v.$ease-standard;
+
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-4px);
+    }
+  }
+}

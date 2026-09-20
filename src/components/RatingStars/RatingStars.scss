@@ -1,0 +1,47 @@
+@use '../../styles/variables' as v;
+
+.rating-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-2;
+  font-size: 1.3rem;
+  font-weight: 700;
+
+  &__track {
+    position: relative;
+    width: 60px;
+    height: 4px;
+    background: v.$color-border;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  &__fill {
+    position: absolute;
+    inset: 0;
+    background: v.$color-star;
+    border-radius: 2px;
+  }
+
+  &__value {
+    color: v.$color-text-primary;
+  }
+
+  &__count {
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+
+  &--sm {
+    font-size: 1.1rem;
+
+    .rating-stars__track {
+      width: 40px;
+    }
+  }
+
+  &--empty {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+}

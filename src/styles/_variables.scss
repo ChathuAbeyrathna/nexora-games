@@ -1,0 +1,65 @@
+// ---------------------------------------------------------------------------
+// Design tokens
+// ---------------------------------------------------------------------------
+
+// Color — one controlled accent (ember copper) over a near-black editorial base
+$color-bg: #0a0a0b;
+$color-bg-elevated: #101012;
+$color-bg-surface: #16161a;
+$color-bg-surface-2: #1c1c21;
+$color-border: rgba(255, 255, 255, 0.08);
+$color-border-strong: rgba(255, 255, 255, 0.16);
+
+$color-text-primary: #f2f0ec;
+$color-text-secondary: #a6a4a1;
+$color-text-tertiary: #6f6d6b;
+
+$color-accent: #e2572c;
+$color-accent-dim: #a53f21;
+$color-accent-soft: rgba(226, 87, 44, 0.14);
+$color-accent-contrast: #0a0a0b;
+
+$color-success: #5fbf8f;
+$color-danger: #d9524a;
+$color-star: #e2b93b;
+
+// Typography
+$font-display: 'Bebas Neue', 'Oswald', sans-serif;
+$font-body: 'Manrope', 'Segoe UI', sans-serif;
+
+// Spacing scale (rem)
+$space-1: 0.4rem;
+$space-2: 0.8rem;
+$space-3: 1.2rem;
+$space-4: 1.6rem;
+$space-5: 2.4rem;
+$space-6: 3.2rem;
+$space-7: 4.8rem;
+$space-8: 6.4rem;
+$space-9: 9.6rem;
+
+// Layout
+$container-max: 1440px;
+$radius-sm: 2px;
+$radius-md: 4px;
+
+// Breakpoints (max-width based, mobile-first content, desktop-first overrides)
+$bp-xs: 375px;
+$bp-sm: 600px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+$bp-xxl: 1440px;
+
+// Motion
+$ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+$ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+$dur-fast: 0.2s;
+$dur-base: 0.4s;
+$dur-slow: 0.7s;
+
+// Z-index scale
+$z-nav: 100;
+$z-overlay: 200;
+$z-modal: 300;
+$z-toast: 400;

@@ -1,0 +1,186 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.marketplace-header {
+  padding-top: 13rem;
+  padding-bottom: v.$space-5;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-2;
+  align-items: flex-start;
+
+  @include m.respond-down(v.$bp-md) {
+    padding-top: 11rem;
+  }
+
+  &__clear {
+    margin-top: v.$space-1;
+  }
+}
+
+.marketplace-toolbar {
+  display: flex;
+  align-items: stretch;
+  gap: v.$space-3;
+  margin-bottom: v.$space-4;
+
+  .search-bar {
+    flex: 1;
+  }
+
+  &__right {
+    display: flex;
+    gap: v.$space-3;
+  }
+
+  &__filter-btn {
+    display: none;
+  }
+
+  @include m.respond-down(v.$bp-md) {
+    flex-wrap: wrap;
+
+    .search-bar {
+      flex: 1 1 100%;
+      order: 1;
+    }
+
+    &__right {
+      order: 2;
+      flex: 1;
+    }
+
+    .sort-dropdown {
+      flex: 1;
+    }
+
+    &__filter-btn {
+      display: inline-flex;
+    }
+  }
+}
+
+.marketplace-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-2;
+  margin-bottom: v.$space-6;
+
+  &__pill {
+    @include m.button-reset;
+    @include m.focus-ring;
+    padding: 0.9rem 1.8rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: v.$color-text-secondary;
+    border: 1px solid v.$color-border-strong;
+    transition: color v.$dur-fast v.$ease-standard, border-color v.$dur-fast v.$ease-standard,
+      background v.$dur-fast v.$ease-standard;
+
+    @media (hover: hover) {
+      &:hover {
+        color: v.$color-text-primary;
+        border-color: v.$color-text-primary;
+      }
+    }
+
+    &.is-active {
+      background: v.$color-accent;
+      border-color: v.$color-accent;
+      color: #fff;
+    }
+  }
+}
+
+.marketplace-layout {
+  display: grid;
+  grid-template-columns: 27rem 1fr;
+  gap: v.$space-6;
+  align-items: flex-start;
+  padding-bottom: v.$space-8;
+
+  &__sidebar {
+    position: sticky;
+    top: 10rem;
+  }
+
+  &__sidebar-close {
+    display: none;
+  }
+
+  &__backdrop {
+    display: none;
+  }
+
+  @include m.respond-down(v.$bp-lg) {
+    grid-template-columns: 1fr;
+
+    &__sidebar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(34rem, 88vw);
+      z-index: v.$z-overlay;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform v.$dur-base v.$ease-standard;
+      padding: v.$space-6 v.$space-4;
+      background: v.$color-bg;
+
+      .filter-panel {
+        border: none;
+        background: none;
+        padding: 0;
+      }
+
+      &.is-open {
+        transform: translateX(0);
+      }
+    }
+
+    &__sidebar-close {
+      display: grid;
+      place-items: center;
+      position: absolute;
+      top: v.$space-3;
+      right: v.$space-3;
+      width: 4rem;
+      height: 4rem;
+      color: v.$color-text-secondary;
+    }
+
+    &__backdrop {
+      display: block;
+      position: fixed;
+      inset: 0;
+      z-index: calc(#{v.$z-overlay} - 1);
+      background: rgba(4, 4, 5, 0.7);
+    }
+  }
+}
+
+.marketplace-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: v.$space-4;
+
+  @include m.respond-down(v.$bp-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include m.respond-down(v.$bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.marketplace-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: v.$space-3;
+  padding: v.$space-8 v.$space-4;
+  border: 1px dashed v.$color-border-strong;
+}

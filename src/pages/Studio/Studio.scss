@@ -1,0 +1,263 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.studio-hero {
+  padding-top: 16rem;
+  padding-bottom: v.$space-7;
+  border-bottom: 1px solid v.$color-border;
+
+  &__inner {
+    max-width: 90rem;
+  }
+
+  &__statement {
+    margin-top: v.$space-2;
+    margin-bottom: v.$space-4;
+  }
+
+  &__lede {
+    font-size: 1.8rem;
+    color: v.$color-text-secondary;
+    max-width: 68rem;
+  }
+
+  @include m.respond-down(v.$bp-md) {
+    padding-top: 12rem;
+  }
+}
+
+.studio-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: v.$space-5;
+
+  @include m.respond-down(v.$bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: v.$space-6;
+  }
+}
+
+.studio-story {
+  &__text {
+    max-width: 76rem;
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-3;
+
+    p {
+      font-size: 1.6rem;
+      color: v.$color-text-secondary;
+      line-height: 1.75;
+    }
+  }
+}
+
+.studio-pillars {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: v.$color-border;
+  border: 1px solid v.$color-border;
+
+  @include m.respond-down(v.$bp-md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.studio-pillar {
+  background: v.$color-bg;
+  padding: v.$space-5;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-2;
+
+  &__index {
+    font-family: v.$font-display;
+    font-size: 1.6rem;
+    color: v.$color-accent;
+    letter-spacing: 0.1em;
+  }
+
+  h3 {
+    font-family: v.$font-display;
+    font-size: 2.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+
+  p {
+    color: v.$color-text-secondary;
+    font-size: 1.5rem;
+    line-height: 1.65;
+  }
+}
+
+.studio-approach {
+  background: v.$color-bg-elevated;
+  border-block: 1px solid v.$color-border;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    display: flex;
+    gap: v.$space-5;
+    padding-block: v.$space-4;
+    border-bottom: 1px solid v.$color-border;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    h4 {
+      font-family: v.$font-display;
+      font-size: 2rem;
+      text-transform: uppercase;
+      margin-bottom: v.$space-1;
+    }
+
+    p {
+      color: v.$color-text-secondary;
+      font-size: 1.5rem;
+      max-width: 60rem;
+    }
+  }
+
+  &__number {
+    flex-shrink: 0;
+    font-family: v.$font-display;
+    font-size: 3.2rem;
+    color: v.$color-text-tertiary;
+    width: 6rem;
+  }
+
+  @include m.respond-down(v.$bp-sm) {
+    &__item {
+      gap: v.$space-3;
+    }
+    &__number {
+      width: 4rem;
+      font-size: 2.4rem;
+    }
+  }
+}
+
+.studio-timeline {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid v.$color-border-strong;
+  margin-left: v.$space-2;
+
+  &__item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    gap: v.$space-5;
+    padding: v.$space-4 0 v.$space-4 v.$space-5;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: v.$space-4;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: v.$color-accent;
+    }
+  }
+
+  &__year {
+    font-family: v.$font-display;
+    font-size: 2.6rem;
+    color: v.$color-text-primary;
+  }
+
+  &__content {
+    h4 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      margin-bottom: v.$space-1;
+    }
+
+    p {
+      font-size: 1.4rem;
+      color: v.$color-text-secondary;
+      max-width: 54rem;
+    }
+  }
+
+  @include m.respond-down(v.$bp-sm) {
+    &__item {
+      grid-template-columns: 1fr;
+      gap: v.$space-1;
+    }
+  }
+}
+
+.studio-team {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: v.$space-4;
+
+  @include m.respond-down(v.$bp-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include m.respond-down(v.$bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.studio-projects {
+  border-top: 1px solid v.$color-border;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: v.$space-4;
+
+    @include m.respond-down(v.$bp-md) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.studio-project {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: v.$space-2;
+  padding: v.$space-4;
+  background: v.$color-bg-surface;
+  border: 1px solid v.$color-border;
+  transition: border-color v.$dur-base v.$ease-standard, transform v.$dur-base v.$ease-standard;
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: v.$color-border-strong;
+      transform: translateY(-4px);
+    }
+  }
+
+  h4 {
+    font-family: v.$font-display;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-size: 1.4rem;
+    color: v.$color-text-secondary;
+  }
+
+  &__link {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: v.$color-accent;
+  }
+}

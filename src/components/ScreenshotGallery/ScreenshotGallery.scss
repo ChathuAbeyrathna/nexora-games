@@ -1,0 +1,133 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.screenshot-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: v.$space-2;
+
+  @include m.respond-down(v.$bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__thumb {
+    @include m.button-reset;
+    @include m.focus-ring;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 10, 11, 0);
+      transition: background v.$dur-fast v.$ease-standard;
+    }
+
+    svg {
+      transition: transform v.$dur-base v.$ease-standard;
+    }
+
+    @media (hover: hover) {
+      &:hover svg {
+        transform: scale(1.08);
+      }
+
+      &:hover::after {
+        background: rgba(10, 10, 11, 0.15);
+      }
+    }
+  }
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: v.$z-overlay;
+  background: rgba(4, 4, 5, 0.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: v.$space-6;
+
+  @include m.respond-down(v.$bp-sm) {
+    padding: v.$space-3;
+  }
+
+  &__frame {
+    width: 100%;
+    max-width: 100rem;
+    aspect-ratio: 16 / 9;
+  }
+
+  &__close {
+    @include m.button-reset;
+    @include m.focus-ring;
+    position: absolute;
+    top: v.$space-4;
+    right: v.$space-4;
+    color: #fff;
+    width: 4.4rem;
+    height: 4.4rem;
+    display: grid;
+    place-items: center;
+
+    @media (hover: hover) {
+      &:hover {
+        color: v.$color-accent;
+      }
+    }
+  }
+
+  &__nav {
+    @include m.button-reset;
+    @include m.focus-ring;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    width: 5.6rem;
+    height: 5.6rem;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 255, 255, 0.06);
+
+    @media (hover: hover) {
+      &:hover {
+        background: v.$color-accent;
+      }
+    }
+
+    &--prev {
+      left: v.$space-4;
+    }
+
+    &--next {
+      right: v.$space-4;
+    }
+
+    @include m.respond-down(v.$bp-sm) {
+      width: 4.2rem;
+      height: 4.2rem;
+
+      &--prev {
+        left: v.$space-2;
+      }
+      &--next {
+        right: v.$space-2;
+      }
+    }
+  }
+
+  &__counter {
+    position: absolute;
+    bottom: v.$space-4;
+    left: 50%;
+    transform: translateX(-50%);
+    color: v.$color-text-secondary;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+}

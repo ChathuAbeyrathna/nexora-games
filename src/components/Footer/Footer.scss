@@ -1,0 +1,100 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.footer {
+  border-top: 1px solid v.$color-border;
+  padding-block: v.$space-7 v.$space-5;
+  background: v.$color-bg-elevated;
+
+  &__top {
+    display: grid;
+    grid-template-columns: 1.6fr repeat(3, 1fr);
+    gap: v.$space-6;
+    padding-bottom: v.$space-6;
+    border-bottom: 1px solid v.$color-border;
+
+    @include m.respond-down(v.$bp-lg) {
+      grid-template-columns: 1fr 1fr;
+      row-gap: v.$space-5;
+    }
+
+    @include m.respond-down(v.$bp-sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-3;
+    max-width: 32rem;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: v.$space-2;
+  }
+
+  &__logo-mark {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    background: v.$color-accent;
+    color: #fff;
+    font-family: v.$font-display;
+    font-size: 1.7rem;
+  }
+
+  &__logo-text {
+    font-family: v.$font-display;
+    font-size: 1.9rem;
+    letter-spacing: 0.14em;
+  }
+
+  &__tagline {
+    color: v.$color-text-secondary;
+    font-size: 1.4rem;
+    max-width: 30rem;
+  }
+
+  &__col {
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-2;
+
+    a {
+      color: v.$color-text-secondary;
+      font-size: 1.4rem;
+      width: fit-content;
+      transition: color v.$dur-fast v.$ease-standard;
+
+      @media (hover: hover) {
+        &:hover {
+          color: v.$color-accent;
+        }
+      }
+    }
+  }
+
+  &__col-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: v.$color-text-primary;
+    margin-bottom: v.$space-1;
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: v.$space-4;
+    font-size: 1.2rem;
+    color: v.$color-text-tertiary;
+    flex-wrap: wrap;
+    gap: v.$space-2;
+  }
+}

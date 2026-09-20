@@ -1,0 +1,20 @@
+@use '../../styles/variables' as v;
+
+.stat-counter {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-1;
+
+  &__value {
+    color: v.$color-text-primary;
+    font-size: clamp(4rem, 6vw, 7.2rem);
+  }
+
+  &__label {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: v.$color-text-secondary;
+  }
+}

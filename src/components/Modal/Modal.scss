@@ -1,0 +1,63 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.modal-root {
+  position: fixed;
+  inset: 0;
+  z-index: v.$z-modal;
+  display: grid;
+  place-items: center;
+  padding: v.$space-4;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 6, 7, 0.86);
+  backdrop-filter: blur(6px);
+}
+
+.modal-panel {
+  position: relative;
+  width: 100%;
+  max-width: 64rem;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: v.$color-bg-surface;
+  border: 1px solid v.$color-border-strong;
+  padding: v.$space-6;
+
+  @include m.respond-down(v.$bp-sm) {
+    padding: v.$space-4;
+    max-height: 92vh;
+  }
+
+  &--lg {
+    max-width: 96rem;
+  }
+
+  &__close {
+    @include m.button-reset;
+    @include m.focus-ring;
+    position: absolute;
+    top: v.$space-3;
+    right: v.$space-3;
+    display: grid;
+    place-items: center;
+    width: 3.6rem;
+    height: 3.6rem;
+    color: v.$color-text-secondary;
+    transition: color v.$dur-fast v.$ease-standard;
+
+    @media (hover: hover) {
+      &:hover {
+        color: v.$color-accent;
+      }
+    }
+  }
+
+  &__title {
+    padding-right: v.$space-6;
+    margin-bottom: v.$space-4;
+  }
+}
